@@ -1,0 +1,83 @@
+/* Center the section on the page */
+.course-offerings-container {
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .course-offerings-header {
+    color: #333;
+    font-size: 1.5rem;
+  }
+  
+  .course-offerings-input {
+    padding: 10px;
+    width: 70%;
+    margin: 10px 0;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .course-offerings-button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 0.9rem;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .course-offerings-add-button {
+    background-color: #28a745; /* Green */
+  }
+  
+  .course-offerings-add-button:hover {
+    background-color: #218838;
+  }
+  
+  .course-offerings-edit-button {
+    background-color: #007bff; /* Blue */
+  }
+  
+  .course-offerings-edit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .course-offerings-delete-button {
+    background-color: #dc3545; /* Red */
+  }
+  
+  .course-offerings-delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  .course-offerings-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .course-offerings-item {
+    padding: 10px;
+    margin: 5px 0;
+    background: #f8f9fa;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .course-offerings-item span {
+    font-size: 1rem;
+    color: #333;
+  }
+  
