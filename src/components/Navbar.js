@@ -5,6 +5,12 @@ import './Navbar.css';
 const Navbar = () => {
   return (
     <nav className="navbar">
+      <div className='justify'>
+        <div className='logo'>
+        Student Registration System
+        </div>
+    
+     
       <ul className="nav-items">
         <li>
           <NavLink to="/course-types" className="nav-link" activeClassName="active-link">
@@ -27,6 +33,7 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
+      </div>
     </nav>
   );
 };

@@ -51,7 +51,9 @@
   .courses-edit-button:hover {
     background-color: #0056b3;
   }
-  
+  .courses-save-button{
+    background-color: #007bff;
+  }
   .courses-delete-button {
     background-color: #dc3545; /* Red */
   }

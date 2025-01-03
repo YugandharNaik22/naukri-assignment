@@ -1,69 +1,83 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Courses.css';
 
-const Courses = () => {
-  const [courses, setCourses] = useState([]);
-  const [input, setInput] = useState('');
+const Courses = ({ courses, addCourse, updateCourse, deleteCourse }) => {
+  const [newCourse, setNewCourse] = useState('');
+  const [editIndex, setEditIndex] = useState(null);
+  const [editCourseName, setEditCourseName] = useState('');
 
-  // Load existing courses from localStorage on component mount
-  useEffect(() => {
-    const savedCourses = JSON.parse(localStorage.getItem('courses')) || [];
-    setCourses(savedCourses);
-  }, []);
-
-  const addCourse = () => {
-    if (input.trim()) {
-      const updatedCourses = [...courses, input];
-      setCourses(updatedCourses);
-      localStorage.setItem('courses', JSON.stringify(updatedCourses));
-      setInput('');
+  const handleAddCourse = () => {
+    if (newCourse.trim()) {
+      addCourse(newCourse);
+      setNewCourse('');
     }
   };
 
-  const updateCourse = (index, newName) => {
-    if (newName.trim()) {
-      const updatedCourses = [...courses];
-      updatedCourses[index] = newName;
-      setCourses(updatedCourses);
-      localStorage.setItem('courses', JSON.stringify(updatedCourses));
+  const handleEditCourse = (index) => {
+    setEditIndex(index);
+    setEditCourseName(courses[index]);
+  };
+
+  const handleSaveEdit = () => {
+    if (editCourseName.trim()) {
+      updateCourse(editIndex, editCourseName); // Save the updated course
+      setEditIndex(null); // Reset the edit state
+      setEditCourseName(''); // Clear the input field
     }
   };
 
-  const deleteCourse = (index) => {
-    const updatedCourses = courses.filter((_, i) => i !== index);
-    setCourses(updatedCourses);
-    localStorage.setItem('courses', JSON.stringify(updatedCourses));
+  const handleDeleteCourse = (index) => {
+    deleteCourse(index); // Delete the course
   };
 
   return (
-    <div className='courses-container'>
-      <h2 className='courses-header'>Courses</h2>
-      <input 
-        type="text" 
-        value={input} 
-        onChange={(e) => setInput(e.target.value)} 
-        className='courses-input'
-        placeholder="Add new course"
+    <div className="courses-container">
+      <h2 className="courses-header">Manage Courses</h2>
+      
+      <input
+        className="courses-input"
+        type="text"
+        placeholder="Enter Course Name"
+        value={newCourse}
+        onChange={(e) => setNewCourse(e.target.value)}
       />
-      <button 
-        onClick={addCourse} 
-        className='courses-button courses-add-button'
+      <button
+        className="courses-button courses-add-button"
+        onClick={handleAddCourse}
       >
-        Add Course
+        Add
       </button>
-      <ul className='courses-list'>
+
+      {editIndex !== null && (
+        <div className="edit-course-container">
+          <input
+            className="courses-input"
+            type="text"
+            value={editCourseName}
+            onChange={(e) => setEditCourseName(e.target.value)} // Update the course name while editing
+          />
+          <button
+            className="courses-button courses-save-button"
+            onClick={handleSaveEdit} // Save after editing
+          >
+            Save
+          </button>
+        </div>
+      )}
+
+      <ul className="courses-list">
         {courses.map((course, index) => (
-          <li key={index} className='courses-item'>
+          <li key={index} className="courses-item">
             <span>{course}</span>
-            <button 
-              onClick={() => updateCourse(index, prompt('New name:', course))}
-              className='courses-button courses-edit-button'
+            <button
+              className="courses-button courses-edit-button"
+              onClick={() => handleEditCourse(index)} // Edit the selected course
             >
               Edit
             </button>
-            <button 
-              onClick={() => deleteCourse(index)} 
-              className='courses-button courses-delete-button'
+            <button
+              className="courses-button courses-delete-button"
+              onClick={() => handleDeleteCourse(index)} // Delete the selected course
             >
               Delete
             </button>
